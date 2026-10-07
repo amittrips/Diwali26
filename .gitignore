@@ -1,0 +1,24 @@
+# Large media & archives should NOT be committed or deployed to Netlify.
+# Keep originals in a separate archive folder outside this project.
+*.zip
+*.mov
+*.MOV
+*.mp4
+*.MP4
+*.mkv
+*.avi
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+*.swp
+
+# Node dependencies (installed by Netlify at build time — never commit)
+node_modules/
+
+# Secrets & env (never commit)
+.env
+.env.*
+
+# Netlify local state
+.netlify/

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Diwali — Festival of Lights 🪔</title>
+  <meta name="description" content="A fun, interactive Diwali infotainment kiosk for all ages." />
+
+  <!-- Open Graph (WhatsApp, Facebook, LinkedIn link previews) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Diwali — Festival of Lights" />
+  <meta property="og:title" content="Diwali — Festival of Lights 🪔" />
+  <meta property="og:description" content="A fun, interactive Diwali site for all ages — tap diyas, explore famous places, enjoy fireworks, and play the quiz." />
+  <meta property="og:url" content="https://effervescent-centaur-99edc1.netlify.app/" />
+  <meta property="og:image" content="https://effervescent-centaur-99edc1.netlify.app/images/og-card.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Happy Diwali — the Festival of Lights, with a row of glowing diyas" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Diwali — Festival of Lights 🪔" />
+  <meta name="twitter:description" content="A fun, interactive Diwali site for all ages — tap diyas, explore famous places, enjoy fireworks, and play the quiz." />
+  <meta name="twitter:image" content="https://effervescent-centaur-99edc1.netlify.app/images/og-card.jpg" />
+
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🪔</text></svg>" />
+</head>
+<body>
+  <!-- Interactive fireworks canvas sits behind everything -->
+  <canvas id="fireworks-canvas" aria-hidden="true"></canvas>
+
+  <!-- ============ AGE GATE ============ -->
+  <section id="age-gate" class="screen active" aria-label="Choose your age">
+    <div class="agegate-inner">
+      <div class="floating-diyas" aria-hidden="true">
+        <span class="diya-emoji">🪔</span>
+        <span class="diya-emoji">🪔</span>
+        <span class="diya-emoji">🪔</span>
+      </div>
+      <h1 class="title-glow">Happy Diwali!</h1>
+      <p class="subtitle">The Festival of Lights ✨</p>
+      <p class="agegate-prompt">Tell us your age so we can pick the perfect story for you:</p>
+
+      <div class="age-buttons" role="group" aria-label="Age options">
+        <button class="age-card" data-age="5">
+          <span class="age-emoji">🌟</span>
+          <span class="age-label">Little Star</span>
+          <span class="age-range">Ages 3–7</span>
+        </button>
+        <button class="age-card" data-age="10">
+          <span class="age-emoji">🧭</span>
+          <span class="age-label">Explorer</span>
+          <span class="age-range">Ages 8–12</span>
+        </button>
+        <button class="age-card" data-age="16">
+          <span class="age-emoji">📚</span>
+          <span class="age-label">Scholar</span>
+          <span class="age-range">Ages 13 &amp; up</span>
+        </button>
+      </div>
+
+      <div class="age-exact">
+        <label for="exact-age">Or type an exact age:</label>
+        <input type="number" id="exact-age" min="1" max="120" inputmode="numeric" placeholder="e.g. 9" />
+        <button id="exact-age-go" class="btn-go">Go ✨</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ MAIN APP ============ -->
+  <main id="app" class="screen" aria-label="Diwali content">
+    <!-- Top bar -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <span class="topbar-logo">🪔 Diwali</span>
+        <span id="tier-badge" class="tier-badge"></span>
+      </div>
+      <nav class="nav" id="nav" aria-label="Sections"></nav>
+      <button id="mute-toggle" class="btn-mute" title="Sound on/off" aria-pressed="false">🔊</button>
+      <button id="start-over" class="btn-startover" title="Start over">↺ Start Over</button>
+    </header>
+
+    <!-- Content sections are injected here -->
+    <div id="sections"></div>
+
+    <footer class="footer">
+      <button id="launch-fireworks" class="btn-fireworks">🎆 Tap anywhere to launch fireworks!</button>
+      <p class="footer-note">Made with light and love. Tap the screen to set off fireworks anytime. 🪔</p>
+      <p style="margin-top:0.75rem;">
+        <a href="art/index.html" style="display:inline-block; padding:0.6rem 1.2rem; border-radius:50px; background:linear-gradient(135deg,#ff8c1a,#ffd23f); color:#3a1500; font-weight:700; text-decoration:none;">🎨 Open the Diwali Art Studio</a>
+      </p>
+      <p id="visitor-counter" class="visitor-counter" hidden>🪔 Visitors: <span id="visitor-count">—</span></p>
+      <p class="footer-credits">
+        Image credits (via Wikimedia Commons):
+        Ram Mandir, Ayodhya —
+        <a href="https://commons.wikimedia.org/wiki/File:Ram_Janmbhoomi_Mandir,_Ayodhya_Dham.jpg" target="_blank" rel="noopener">photo</a>
+        by <a href="https://www.pmindia.gov.in/en/" target="_blank" rel="noopener">Prime Minister's Office</a>
+        (<a href="https://data.gov.in/sites/default/files/Gazette_Notification_OGDL.pdf" target="_blank" rel="noopener">GODL-India</a>);
+        Golden Temple, Amritsar —
+        <a href="https://commons.wikimedia.org/wiki/File:Golden_Temple,_Amritsar_02.jpg" target="_blank" rel="noopener">photo</a>
+        by <a href="https://commons.wikimedia.org/wiki/User:Bgag" target="_blank" rel="noopener">Bernard Gagnon</a>
+        (<a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a>);
+        Namo Ghat, Varanasi —
+        <a href="https://commons.wikimedia.org/wiki/File:Namo_Ghat.jpg" target="_blank" rel="noopener">photo</a>
+        by <a href="https://commons.wikimedia.org/wiki/User:Bimalsaha25" target="_blank" rel="noopener">Bimalsaha25</a>
+        (<a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a>);
+        Hawa Mahal, Jaipur —
+        <a href="https://commons.wikimedia.org/wiki/File:Hawa_Mahal_by_Saibal_Ghosh.jpg" target="_blank" rel="noopener">photo</a>
+        by <a href="https://commons.wikimedia.org/wiki/User:SaibalG" target="_blank" rel="noopener">SaibalG</a>
+        (<a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a>).
+        All other artwork is original (CSS/SVG/canvas).
+      </p>
+    </footer>
+  </main>
+
+  <!-- Popup overlay (diya lighting, etc.) — populated by app.js -->
+  <div id="modal-overlay" class="modal-overlay" aria-hidden="true"></div>
+
+  <!-- Scripts: content first, then behavior -->
+  <script src="content.js"></script>
+  <script src="fireworks.js"></script>
+  <script src="sound.js"></script>
+  <script src="cracker-anim.js"></script>
+  <script src="app.js"></script>
+  <script src="counter.js"></script>
+</body>
+</html>

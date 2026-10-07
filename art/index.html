@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Diwali Art Studio 🎨</title>
+  <meta name="description" content="Draw Diwali art — diyas, rangolis, fireworks — or upload your handmade art and share it in the gallery." />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎨</text></svg>" />
+</head>
+<body>
+  <nav class="topnav">
+    <a class="brand" href="../index.html">🪔 Diwali</a>
+    <div class="spacer"></div>
+    <a class="navlink" href="../index.html">← Back to site</a>
+  </nav>
+
+  <div class="art-wrap">
+    <header class="art-header">
+      <h1>🎨 Diwali Art Studio</h1>
+      <p class="subtitle">Draw with festive tools, or upload your handmade art — then share it in the gallery!</p>
+    </header>
+
+    <div class="tabs">
+      <button class="tab active" data-view="draw">✏️ Draw</button>
+      <button class="tab" data-view="upload">📷 Upload photo</button>
+      <button class="tab" data-view="gallery">🖼️ Gallery</button>
+    </div>
+
+    <!-- ================= DRAW ================= -->
+    <section id="view-draw" class="view active">
+      <div class="studio">
+        <aside class="toolbox">
+          <div class="tool-group">
+            <h3>Tool</h3>
+            <div class="tool-row">
+              <button class="tool-btn active" data-tool="brush" title="Brush">🖌️</button>
+              <button class="tool-btn" data-tool="eraser" title="Eraser">🧽</button>
+            </div>
+          </div>
+
+          <div class="tool-group">
+            <h3>Diwali stamps</h3>
+            <div class="tool-row">
+              <button class="tool-btn" data-stamp="diya" title="Diya">🪔</button>
+              <button class="tool-btn" data-stamp="rangoli" title="Rangoli">🌸</button>
+              <button class="tool-btn" data-stamp="firework" title="Firework">🎆</button>
+              <button class="tool-btn" data-stamp="star" title="Star">⭐</button>
+            </div>
+          </div>
+
+          <div class="tool-group">
+            <h3>Scenes (one tap)</h3>
+            <div class="tool-row">
+              <button class="tool-btn wide" data-scene="city">🏙️ City + Fireworks</button>
+              <button class="tool-btn wide" data-scene="riverbank">🌊 Riverbank + Diyas</button>
+              <button class="tool-btn wide" data-scene="rangoli-bg">🌸 Rangoli backdrop</button>
+            </div>
+          </div>
+
+          <div class="tool-group">
+            <h3>Colour</h3>
+            <div class="swatches" id="swatches"></div>
+            <input type="color" id="colorPicker" value="#ff6a00" />
+          </div>
+
+          <div class="tool-group">
+            <h3>Size <span id="sizeVal" class="size-label">8</span></h3>
+            <input type="range" id="sizeRange" min="1" max="60" value="8" />
+          </div>
+        </aside>
+
+        <div class="canvas-area">
+          <div class="canvas-holder">
+            <canvas id="board" width="1000" height="700"></canvas>
+          </div>
+          <div class="canvas-actions">
+            <button class="btn small" id="undoBtn">↶ Undo</button>
+            <button class="btn small" id="clearBtn">🗑️ Clear</button>
+            <span class="spacer"></span>
+            <span class="hint-inline">Tip: pick a stamp, then tap the canvas.</span>
+            <button class="btn primary small" id="submitDrawingBtn">Share to gallery →</button>
+          </div>
+          <p id="drawStatus" class="status-line"></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= UPLOAD ================= -->
+    <section id="view-upload" class="view">
+      <div class="upload-box">
+        <div class="dropzone" id="dropzone">
+          <p>📷 Tap to choose a photo of your handmade art<br /><small>(or drag &amp; drop here)</small></p>
+          <input type="file" id="fileInput" accept="image/png,image/jpeg,image/webp" hidden />
+        </div>
+        <img id="previewImg" class="preview-img" alt="preview" />
+
+        <div class="field">
+          <label for="uploadAuthor">Your name <span style="color:#ff5470">*</span></label>
+          <input type="text" id="uploadAuthor" maxlength="24" placeholder="e.g. Aanya" required />
+        </div>
+
+        <button class="btn primary" id="uploadBtn" disabled>Upload to gallery</button>
+        <p id="uploadStatus" class="status-line"></p>
+        <p class="hint-inline" style="text-align:center">
+          Photos are automatically shrunk before upload. Max 5 MB. Images only.
+        </p>
+      </div>
+    </section>
+
+    <!-- ================= GALLERY ================= -->
+    <section id="view-gallery" class="view">
+      <div class="gallery-head">
+        <button class="btn small" id="refreshGalleryBtn">↻ Refresh</button>
+        <div style="flex:1"></div>
+        <div style="min-width:160px">
+          <div class="usage-bar-wrap"><div class="usage-bar" id="usageBar"></div></div>
+          <div class="usage-text" id="usageText">—</div>
+        </div>
+      </div>
+      <div id="galleryGrid" class="gallery-grid"></div>
+      <p id="galleryEmpty" class="gallery-empty">Loading gallery…</p>
+    </section>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

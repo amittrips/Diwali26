@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1a0b2e"/>
+      <stop offset="60%" stop-color="#3a1a52"/>
+      <stop offset="100%" stop-color="#5a2a3e"/>
+    </linearGradient>
+    <radialGradient id="flame" cx="50%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#fff6c8"/>
+      <stop offset="45%" stop-color="#ffcf33"/>
+      <stop offset="100%" stop-color="#ff7a00"/>
+    </radialGradient>
+    <radialGradient id="glow" cx="50%" cy="78%" r="60%">
+      <stop offset="0%" stop-color="rgba(255,180,80,0.35)"/>
+      <stop offset="100%" stop-color="rgba(255,140,50,0)"/>
+    </radialGradient>
+  </defs>
+
+  <!-- background -->
+  <rect width="1200" height="630" fill="url(#sky)"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+
+  <!-- stars -->
+  <g fill="#fff6d0">
+    <circle cx="120" cy="80" r="2.5"/><circle cx="300" cy="60" r="2"/>
+    <circle cx="520" cy="90" r="2.5"/><circle cx="720" cy="55" r="2"/>
+    <circle cx="900" cy="85" r="2.5"/><circle cx="1080" cy="70" r="2"/>
+    <circle cx="200" cy="140" r="1.8"/><circle cx="640" cy="130" r="1.8"/>
+    <circle cx="1000" cy="150" r="1.8"/><circle cx="420" cy="160" r="1.6"/>
+  </g>
+
+  <!-- title -->
+  <text x="600" y="250" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif"
+        font-size="92" font-weight="800" fill="#ffd740">Happy Diwali</text>
+  <text x="600" y="320" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif"
+        font-size="42" font-weight="600" fill="#ffe9a8">The Festival of Lights — for all ages</text>
+
+  <!-- row of diyas -->
+  <g>
+    <!-- diya template repeated at different x positions and colors -->
+    <!-- diya 1 -->
+    <g transform="translate(360,470)">
+      <ellipse cx="0" cy="-40" rx="14" ry="30" fill="url(#flame)"/>
+      <ellipse cx="0" cy="20" rx="70" ry="20" fill="#c0653a"/>
+      <path d="M-70 20 Q0 70 70 20 Z" fill="#8f4526"/>
+    </g>
+    <!-- diya 2 -->
+    <g transform="translate(540,490)">
+      <ellipse cx="0" cy="-44" rx="16" ry="34" fill="url(#flame)"/>
+      <ellipse cx="0" cy="22" rx="80" ry="22" fill="#d94f8a"/>
+      <path d="M-80 22 Q0 78 80 22 Z" fill="#a63768"/>
+    </g>
+    <!-- diya 3 (center, biggest) -->
+    <g transform="translate(600,420)">
+      <ellipse cx="0" cy="-50" rx="18" ry="40" fill="url(#flame)"/>
+    </g>
+    <!-- diya 4 -->
+    <g transform="translate(660,490)">
+      <ellipse cx="0" cy="-44" rx="16" ry="34" fill="url(#flame)"/>
+      <ellipse cx="0" cy="22" rx="80" ry="22" fill="#e0a92e"/>
+      <path d="M-80 22 Q0 78 80 22 Z" fill="#b4821f"/>
+    </g>
+    <!-- diya 5 -->
+    <g transform="translate(840,470)">
+      <ellipse cx="0" cy="-40" rx="14" ry="30" fill="url(#flame)"/>
+      <ellipse cx="0" cy="20" rx="70" ry="20" fill="#7b5bd6"/>
+      <path d="M-70 20 Q0 70 70 20 Z" fill="#5a40a5"/>
+    </g>
+  </g>
+
+  <!-- footer strip -->
+  <text x="600" y="585" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif"
+        font-size="28" font-weight="600" fill="#d9c8e8">Tap diyas · explore famous places · fireworks · quiz</text>
+</svg>

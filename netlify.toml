@@ -1,0 +1,47 @@
+# Netlify configuration for the Diwali kiosk site.
+# This is a fully static site (no build step needed).
+
+[build]
+  # Nothing to build for the static site — just publish the project root.
+  # Netlify will still install package.json deps and bundle the functions below.
+  publish = "."
+  command = ""
+  functions = "netlify/functions"
+
+[functions]
+  # Bundle the AWS SDK with each Art Studio function.
+  node_bundler = "esbuild"
+
+# --- Art Studio API (Cloudflare R2 uploads + gallery) ---
+[[redirects]]
+  from = "/api/upload-art"
+  to = "/.netlify/functions/upload-art"
+  status = 200
+
+[[redirects]]
+  from = "/api/list-art"
+  to = "/.netlify/functions/list-art"
+  status = 200
+
+[[redirects]]
+  from = "/api/get-art"
+  to = "/.netlify/functions/get-art"
+  status = 200
+
+# Sensible security + caching headers for a static kiosk site.
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "no-referrer-when-downgrade"
+
+[[headers]]
+  for = "/*.js"
+  [headers.values]
+    Cache-Control = "public, max-age=3600"
+
+[[headers]]
+  for = "/*.css"
+  [headers.values]
+    Cache-Control = "public, max-age=3600"
