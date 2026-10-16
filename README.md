@@ -37,7 +37,9 @@ Function does it server-side (mirroring the Art Studio `list-art` pattern):
 - `netlify/functions/list-memories.js` → `GET /api/list-memories?year=2025`
 - It queries the Drive API with `mimeType contains 'image/'`, so **videos are
   filtered out server-side** and never reach the slideshow.
-- Returns `https://drive.google.com/thumbnail?id=<id>&sz=w1920` URLs for display.
+- Returns directly-embeddable `https://lh3.googleusercontent.com/d/<id>=w1920`
+  URLs for display (the `drive.google.com/thumbnail` form only works inside
+  Google's own pages, so it can't be shown in an `<img>` from our site).
 
 ### One-time setup (Netlify env var)
 

@@ -117,9 +117,12 @@ exports.handler = async (event) => {
           mimeType: f.mimeType,
           width: f.imageMediaMetadata?.width || null,
           height: f.imageMediaMetadata?.height || null,
-          // Direct-view thumbnail URL (large). Works for public files and is
-          // reliable for <img> display; sz controls the longest edge.
-          url: `https://drive.google.com/thumbnail?id=${f.id}&sz=w1920`,
+          // Directly-embeddable image URL. The drive.google.com/thumbnail
+          // endpoint only 302-redirects to this host and carries
+          // X-Frame-Options, so bare <img> loads from our origin fail; the
+          // resolved lh3 URL returns image/jpeg with 200 and embeds fine.
+          // `=w1920` caps the longest edge (originals are up to 8192px).
+          url: `https://lh3.googleusercontent.com/d/${f.id}=w1920`,
         });
       });
 
