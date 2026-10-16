@@ -17,6 +17,59 @@ works offline and can be dropped onto any static host (Netlify, GitHub Pages, et
 - **Age-tiered quiz** with live scoring and celebratory fireworks.
 - **Kiosk-ready**: large touch targets, no hover-only interactions, `Esc` to reset, responsive.
 
+## 📺 Memories Slideshow (for a TV)
+
+`/slideshow/` is a self-contained fullscreen photo slideshow of the Diwali
+**memories**, designed to run unattended on a TV. **Images only — no videos.**
+
+- Pulls photos from the public Google Drive **2025 album** (the portrait photo
+  folder referenced in `content.js` → `memories`).
+- Crossfades every 7 seconds, shuffled, loops forever.
+- Auto-refreshes the album every 3 minutes, so newly added photos appear.
+- Requests a screen **Wake Lock** so the TV doesn't sleep.
+- Goes **fullscreen** on first tap/click/Enter.
+
+### How it lists the folder
+
+A static page can't list a Drive folder's contents on its own, so a Netlify
+Function does it server-side (mirroring the Art Studio `list-art` pattern):
+
+- `netlify/functions/list-memories.js` → `GET /api/list-memories?year=2025`
+- It queries the Drive API with `mimeType contains 'image/'`, so **videos are
+  filtered out server-side** and never reach the slideshow.
+- Returns `https://drive.google.com/thumbnail?id=<id>&sz=w1920` URLs for display.
+
+### One-time setup (Netlify env var)
+
+1. In Google Cloud Console, enable the **Google Drive API** and create an **API
+   key** (restrict it to the Drive API, and optionally to your site referrer).
+2. Make sure the Drive folder is shared **"Anyone with the link – Viewer."**
+3. In Netlify → Site settings → Environment variables, add:
+   - `GOOGLE_API_KEY` = your key
+   - (optional) `DRIVE_FOLDER_2025` / `DRIVE_FOLDER_2024` to override folder IDs
+4. Redeploy. Open `/slideshow/` and tap **Start**.
+
+Until `GOOGLE_API_KEY` is set, the slideshow shows a clear "server not
+configured" message instead of failing silently.
+
+### Running it on a TV
+
+- **Smart TV / Fire Stick / Chromecast / Apple TV:** open the site URL in the TV
+  browser and press the ⛶ fullscreen button, or cast the browser tab.
+- **Mini-PC / Raspberry Pi / laptop (most reliable):** launch Chrome in kiosk
+  mode pointing at the slideshow:
+  ```bash
+  chromium --kiosk --app=https://your-site.netlify.app/slideshow/
+  ```
+
+### Query-string options
+
+| Option | Example | Effect |
+|--------|---------|--------|
+| `year` | `?year=2025` | Which album to show (default `2025`) |
+| `seconds` | `?seconds=10` | Seconds per photo (2–120, default 7) |
+| `shuffle` | `?shuffle=0` | Disable shuffle (show folder order) |
+
 ## 📂 Files
 
 | File | Purpose |
@@ -26,6 +79,8 @@ works offline and can be dropped onto any static host (Netlify, GitHub Pages, et
 | `content.js` | All text content, organized by age tier |
 | `app.js` | Age selection, content rendering, navigation, quiz, start-over |
 | `fireworks.js` | Canvas fireworks engine (tap to launch) |
+| `slideshow/` | Fullscreen TV slideshow of Google Drive memories (images only) |
+| `netlify/functions/list-memories.js` | Lists images from the public Drive album (videos filtered out) |
 | `netlify.toml` | Netlify hosting config (static, with headers) |
 
 ## ▶️ Run locally

@@ -2,10 +2,10 @@
 // Talks to Cloudflare R2 via the S3-compatible API.
 //
 // Required environment variables (set in Netlify dashboard, NOT in code):
-//   R2_ACCOUNT_ID        e.g. 37b97dfe6d98bb0635b4368e96aa6fa4
+//   R2_ACCOUNT_ID        your Cloudflare account ID
 //   R2_ACCESS_KEY_ID     from the R2 API token you create
 //   R2_SECRET_ACCESS_KEY from the R2 API token you create
-//   R2_BUCKET            e.g. diwali26mol
+//   R2_BUCKET            your R2 bucket name
 // Optional:
 //   ART_MAX_FILE_BYTES   per-file cap (default 5 MB)
 //   ART_BUDGET_BYTES     global soft cap (default 4.5 GB)

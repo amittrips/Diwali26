@@ -43,6 +43,12 @@
   to = "/.netlify/functions/get-art"
   status = 200
 
+# --- TV slideshow: lists images from the public Google Drive memories folder ---
+[[redirects]]
+  from = "/api/list-memories"
+  to = "/.netlify/functions/list-memories"
+  status = 200
+
 # Sensible security + caching headers for a static kiosk site.
 [[headers]]
   for = "/*"

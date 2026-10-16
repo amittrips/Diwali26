@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Diwali Memories — Slideshow 📺</title>
+  <meta name="description" content="A fullscreen photo slideshow of our Diwali memories — made for a TV." />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📺</text></svg>" />
+</head>
+<body>
+  <!-- Two stacked layers for crossfading between photos -->
+  <div class="stage" id="stage">
+    <div class="layer" id="layerA"></div>
+    <div class="layer" id="layerB"></div>
+  </div>
+
+  <!-- Caption (photo name / year) -->
+  <div class="caption" id="caption" aria-live="polite"></div>
+
+  <!-- Minimal on-screen controls (auto-hide). TVs ignore these; they're for
+       setup on a laptop/phone before casting. -->
+  <div class="controls" id="controls">
+    <button class="ctrl" id="prevBtn" title="Previous (←)" aria-label="Previous">⟨</button>
+    <button class="ctrl" id="playBtn" title="Play / Pause (space)" aria-label="Play or pause">⏸</button>
+    <button class="ctrl" id="nextBtn" title="Next (→)" aria-label="Next">⟩</button>
+    <button class="ctrl" id="fsBtn" title="Fullscreen (f)" aria-label="Fullscreen">⛶</button>
+  </div>
+
+  <!-- Start overlay: a user gesture is required to enter fullscreen and to
+       request a screen Wake Lock, so we ask for one tap/click/key first. -->
+  <div class="overlay" id="overlay">
+    <div class="overlay-card">
+      <div class="overlay-emoji">🪔📺</div>
+      <h1>Diwali Memories</h1>
+      <p id="overlayMsg">Tap anywhere to start the slideshow.</p>
+      <button class="start-btn" id="startBtn">▶ Start slideshow</button>
+      <p class="overlay-hint">
+        For a TV: cast this browser tab, or open it in the TV browser and press
+        the fullscreen button. On a mini-PC/Raspberry Pi, launch Chrome in
+        kiosk mode pointing at this page.
+      </p>
+    </div>
+  </div>
+
+  <!-- Status / error line (hidden unless something needs saying) -->
+  <div class="status" id="status" hidden></div>
+
+  <script src="app.js"></script>
+</body>
+</html>

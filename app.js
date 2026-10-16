@@ -590,6 +590,12 @@
       });
       navEl.appendChild(b);
     });
+    // Art Studio lives on its own page — add a nav link to it.
+    const art = el("button", "nav-btn", "🎨 Art Studio");
+    art.addEventListener("click", function () {
+      window.location.href = "art/index.html";
+    });
+    navEl.appendChild(art);
   }
 
   function renderContent(tier) {
