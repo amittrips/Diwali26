@@ -114,7 +114,9 @@
       .then(function () {
         var next = 1 - activeLayer;
         var el = layers[next];
-        el.style.backgroundImage = "url('" + photo.url.replace(/'/g, "%27") + "')";
+        // Both the blurred backdrop (.bg) and the sharp photo (.fg) read this
+        // CSS variable, so one assignment updates both.
+        el.style.setProperty("--img", "url('" + photo.url.replace(/'/g, "%27") + "')");
         // crossfade
         layers[activeLayer].classList.remove("show");
         el.classList.add("show");

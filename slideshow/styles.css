@@ -34,9 +34,6 @@ body.idle { cursor: none; }
 .layer {
   position: absolute;
   inset: 0;
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: contain;      /* show the WHOLE photo (good for portraits) */
   opacity: 0;
   transition: opacity var(--fade) ease-in-out;
   will-change: opacity;
@@ -44,19 +41,27 @@ body.idle { cursor: none; }
 
 .layer.show { opacity: 1; }
 
-/* A soft blurred version of the same image fills the letterbox bars so a
-   portrait photo on a 16:9 TV looks intentional rather than black-barred.
-   Implemented as a ::before on each layer, set via inline custom property. */
-.layer::before {
-  content: "";
+/* Blurred backdrop fills the letterbox bars behind portrait photos. Painted
+   BEHIND the sharp image via normal document order (no negative z-index). */
+.layer .bg {
   position: absolute;
   inset: 0;
-  background-image: inherit;
+  background-image: var(--img);
   background-position: center center;
+  background-repeat: no-repeat;
   background-size: cover;
   filter: blur(42px) brightness(0.45) saturate(1.1);
   transform: scale(1.15);
-  z-index: -1;
+}
+
+/* The actual photo, shown whole (contain), on TOP of the blurred backdrop. */
+.layer .fg {
+  position: absolute;
+  inset: 0;
+  background-image: var(--img);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: contain;
 }
 
 /* ---------- Caption ---------- */
