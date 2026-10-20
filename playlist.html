@@ -125,18 +125,6 @@
       }
       tabForm.addEventListener("click", function () { select("form"); });
       tabList.addEventListener("click", function () { select("list"); });
-
-      // ---- Drive folder link (always visible, below tabs) ----
-      if (cfg.driveFolderUrl) {
-        var link = el("a", "btn-go dj-folder-link");
-        link.href = cfg.driveFolderUrl;
-        link.target = "_blank";
-        link.rel = "noopener noreferrer";
-        link.textContent = "Open the playlist folder ↗";
-        var p = el("p", "dj-folder-wrap");
-        p.appendChild(link);
-        root.appendChild(p);
-      }
     })();
   </script>
 </body>

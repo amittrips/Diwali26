@@ -24,7 +24,6 @@ const DJ_PLAYLIST = {
   enabled: true,
   formEmbedUrl: "https://docs.google.com/forms/d/e/1FAIpQLSfwin7QvjNmt_myXQ6fAnpPTuClgPlENkOa3YNX126w8Iyouw/viewform?embedded=true",
   sheetEmbedUrl: "https://docs.google.com/spreadsheets/d/e/2PACX-1vRPwF8MiFm-x0Ste3MYGlkRUI1xO_vZmO2qfegt9U46VCmaocCOYd4IlHCFgVW3rYrgMLjTKZP89nbK/pubhtml?widget=true&headers=false",
-  driveFolderUrl: "https://drive.google.com/drive/folders/1ePrjZbE7aQOPGxEwYVnIT0kkwfx0hi27",
 };
 
 

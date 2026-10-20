@@ -362,8 +362,6 @@ html, body {
 .dj-form { height: 620px; }
 .dj-sheet { height: 420px; }
 .dj-note { text-align: center; color: var(--text-dim); margin: 8px 0; }
-.dj-folder-wrap { text-align: center; margin-top: 6px; }
-.dj-folder-link { display: inline-block; text-decoration: none; }
 
 /* Standalone playlist page */
 .playlist-page { min-height: 100vh; }
