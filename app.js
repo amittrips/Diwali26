@@ -514,6 +514,33 @@
     return sec;
   }
 
+  function buildDJ(tier) {
+    const cfg = (typeof DJ_PLAYLIST !== "undefined") ? DJ_PLAYLIST : null;
+    const sec = el("section", "content-section");
+    sec.id = "sec-dj";
+    sec.appendChild(el("h2", "section-title", "🎵 DJ Playlist Requests"));
+    sec.appendChild(el("p", "section-sub", "Add your favourite song to our Diwali party playlist!"));
+
+    if (!cfg || !cfg.enabled) {
+      sec.appendChild(el("p", "dj-note", "The song request form is not available right now — check back soon! 🎶"));
+      return sec;
+    }
+
+    // Link out to the dedicated, shareable playlist page.
+    const grid = el("div", "card-grid");
+    const card = el("a", "memory-card no-fireworks");
+    card.href = "playlist.html";
+    card.setAttribute("aria-label", "Open the DJ playlist page to request a song");
+    card.innerHTML =
+      '<span class="big-icon">🎶</span>' +
+      "<h3>Request a Song</h3>" +
+      "<p>Open the playlist page to add your favourite song and see what's been requested so far.</p>" +
+      '<span class="tap-hint">🎤 Open playlist →</span>';
+    grid.appendChild(card);
+    sec.appendChild(grid);
+    return sec;
+  }
+
   function buildQuiz(tier) {
     const sec = el("section", "content-section");
     sec.id = "sec-quiz";
@@ -577,6 +604,7 @@
     { id: "sec-crackers", label: "Crackers", build: buildCrackers },
     { id: "sec-video", label: "Watch", build: buildVideo },
     { id: "sec-memories", label: "Memories", build: buildMemories },
+    { id: "sec-dj", label: "Playlist", build: buildDJ },
     { id: "sec-quiz", label: "Quiz", build: buildQuiz },
   ];
 

@@ -13,6 +13,21 @@ const AGE_TIERS = {
   teen: { label: "Scholar", range: "13 & up", emoji: "📚" },
 };
 
+/*
+ * DJ Playlist Requests (Option A: Google Form + published Google Sheet).
+ * Fill these two values when you have them:
+ *  - formEmbedUrl: the Google Form "Send → <> embed" URL (ends with ?embedded=true)
+ *  - sheetEmbedUrl: the published-to-web Sheet URL (File → Share → Publish to web)
+ * Leave either empty ("") to hide that part until it's ready.
+ */
+const DJ_PLAYLIST = {
+  enabled: true,
+  formEmbedUrl: "https://docs.google.com/forms/d/e/1FAIpQLSfwin7QvjNmt_myXQ6fAnpPTuClgPlENkOa3YNX126w8Iyouw/viewform?embedded=true",
+  sheetEmbedUrl: "https://docs.google.com/spreadsheets/d/e/2PACX-1vRPwF8MiFm-x0Ste3MYGlkRUI1xO_vZmO2qfegt9U46VCmaocCOYd4IlHCFgVW3rYrgMLjTKZP89nbK/pubhtml?widget=true&headers=false",
+  driveFolderUrl: "https://drive.google.com/drive/folders/1ePrjZbE7aQOPGxEwYVnIT0kkwfx0hi27",
+};
+
+
 /* Decide a tier from a numeric age. */
 function tierForAge(age) {
   if (age <= 7) return "little";

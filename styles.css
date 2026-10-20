@@ -340,6 +340,63 @@ html, body {
 .memory-card h3 { color: var(--gold); margin: 10px 0 8px; }
 .memory-card p { line-height: 1.55; color: var(--text-dim); margin: 0 0 8px; }
 .memory-card .tap-hint { font-size: 0.9rem; color: var(--gold-soft); }
+
+/* DJ Playlist section */
+.dj-block {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius);
+  padding: 18px;
+  margin: 0 auto 22px;
+  max-width: 760px;
+  box-shadow: var(--shadow);
+}
+.dj-subhead { color: var(--gold); margin: 0 0 12px; text-align: center; }
+.dj-iframe {
+  width: 100%;
+  border: 0;
+  border-radius: 12px;
+  background: #fff;
+  display: block;
+}
+.dj-form { height: 620px; }
+.dj-sheet { height: 420px; }
+.dj-note { text-align: center; color: var(--text-dim); margin: 8px 0; }
+.dj-folder-wrap { text-align: center; margin-top: 6px; }
+.dj-folder-link { display: inline-block; text-decoration: none; }
+
+/* Standalone playlist page */
+.playlist-page { min-height: 100vh; }
+.playlist-main { max-width: 820px; margin: 0 auto; padding: 24px 18px 10px; }
+.playlist-main .section-title { margin-top: 10px; }
+
+/* Playlist tabs */
+.dj-tabs {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 18px auto 16px;
+}
+.dj-tab {
+  padding: 12px 20px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  border-radius: 999px;
+  border: 1px solid var(--card-border);
+  background: var(--card-bg);
+  color: var(--text);
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.12s ease;
+}
+.dj-tab:hover { background: rgba(255, 215, 64, 0.15); }
+.dj-tab.active {
+  color: #2a0f00;
+  background: linear-gradient(135deg, var(--gold), var(--orange));
+  border-color: transparent;
+}
+.dj-panel { max-width: 760px; margin: 0 auto; }
+.dj-panel[hidden] { display: none; }
 .diya-card { cursor: pointer; }
 .diya-card:active { transform: scale(0.98); }
 .diya-card:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }

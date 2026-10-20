@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1a0b2e"/>
+      <stop offset="55%" stop-color="#3a1a52"/>
+      <stop offset="100%" stop-color="#5a2a3e"/>
+    </linearGradient>
+    <radialGradient id="flame" cx="50%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#fff6c8"/>
+      <stop offset="45%" stop-color="#ffcf33"/>
+      <stop offset="100%" stop-color="#ff7a00"/>
+    </radialGradient>
+    <radialGradient id="disc" cx="50%" cy="45%" r="60%">
+      <stop offset="0%" stop-color="#4a3a66"/>
+      <stop offset="100%" stop-color="#241733"/>
+    </radialGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="rgba(255,180,80,0.30)"/>
+      <stop offset="100%" stop-color="rgba(255,140,50,0)"/>
+    </radialGradient>
+  </defs>
+
+  <!-- background -->
+  <rect width="1200" height="630" fill="url(#sky)"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+
+  <!-- stars -->
+  <g fill="#fff6d0">
+    <circle cx="120" cy="80" r="2.5"/><circle cx="300" cy="60" r="2"/>
+    <circle cx="520" cy="90" r="2.5"/><circle cx="880" cy="70" r="2"/>
+    <circle cx="1080" cy="90" r="2.5"/><circle cx="200" cy="150" r="1.8"/>
+    <circle cx="1000" cy="150" r="1.8"/>
+  </g>
+
+  <!-- turntable / vinyl disc (left) -->
+  <g transform="translate(300,300)">
+    <circle r="150" fill="url(#disc)" stroke="#6b5890" stroke-width="3"/>
+    <circle r="112" fill="none" stroke="#3a2b57" stroke-width="2"/>
+    <circle r="78" fill="none" stroke="#3a2b57" stroke-width="2"/>
+    <circle r="46" fill="#ff8f3f"/>
+    <circle r="14" fill="#1a0b2e"/>
+    <!-- tonearm -->
+    <line x1="150" y1="-150" x2="40" y2="-40" stroke="#e0a92e" stroke-width="8" stroke-linecap="round"/>
+    <circle cx="150" cy="-150" r="12" fill="#e0a92e"/>
+  </g>
+
+  <!-- floating musical notes -->
+  <g fill="#ffd740">
+    <g transform="translate(560,170)">
+      <ellipse cx="0" cy="40" rx="15" ry="11" transform="rotate(-20 0 40)"/>
+      <rect x="12" y="-30" width="6" height="66"/>
+      <path d="M18 -30 q34 6 30 40 q-10 -26 -30 -22 Z"/>
+    </g>
+    <g transform="translate(680,120) scale(0.8)">
+      <ellipse cx="0" cy="40" rx="15" ry="11" transform="rotate(-20 0 40)"/>
+      <rect x="12" y="-30" width="6" height="66"/>
+      <path d="M18 -30 q34 6 30 40 q-10 -26 -30 -22 Z"/>
+    </g>
+  </g>
+
+  <!-- title -->
+  <text x="690" y="330" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif"
+        font-size="80" font-weight="800" fill="#ffd740">Diwali DJ Playlist</text>
+  <text x="690" y="392" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif"
+        font-size="38" font-weight="600" fill="#ffe9a8">Request your favourite song 🎵</text>
+
+  <!-- row of small diyas along the bottom -->
+  <g>
+    <g transform="translate(360,540)">
+      <ellipse cx="0" cy="-28" rx="11" ry="22" fill="url(#flame)"/>
+      <ellipse cx="0" cy="12" rx="52" ry="15" fill="#c0653a"/>
+      <path d="M-52 12 Q0 50 52 12 Z" fill="#8f4526"/>
+    </g>
+    <g transform="translate(600,560)">
+      <ellipse cx="0" cy="-28" rx="11" ry="22" fill="url(#flame)"/>
+      <ellipse cx="0" cy="12" rx="52" ry="15" fill="#d94f8a"/>
+      <path d="M-52 12 Q0 50 52 12 Z" fill="#a63768"/>
+    </g>
+    <g transform="translate(840,540)">
+      <ellipse cx="0" cy="-28" rx="11" ry="22" fill="url(#flame)"/>
+      <ellipse cx="0" cy="12" rx="52" ry="15" fill="#e0a92e"/>
+      <path d="M-52 12 Q0 50 52 12 Z" fill="#b4821f"/>
+    </g>
+  </g>
+</svg>

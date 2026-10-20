@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Diwali DJ Playlist — Request a Song 🎵</title>
+  <meta name="description" content="Add your favourite song to our Diwali party playlist." />
+
+  <!-- Open Graph (WhatsApp / social link preview) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Diwali — Festival of Lights" />
+  <meta property="og:title" content="Diwali DJ Playlist — Request a Song 🎵" />
+  <meta property="og:description" content="Add your favourite song to our Diwali party playlist, and see the songs added so far." />
+  <meta property="og:url" content="https://effervescent-centaur-99edc1.netlify.app/playlist.html" />
+  <meta property="og:image" content="https://effervescent-centaur-99edc1.netlify.app/images/og-playlist.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Diwali DJ Playlist — Request a Song 🎵" />
+  <meta name="twitter:description" content="Add your favourite song to our Diwali party playlist, and see the songs added so far." />
+  <meta name="twitter:image" content="https://effervescent-centaur-99edc1.netlify.app/images/og-playlist.jpg" />
+
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎵</text></svg>" />
+</head>
+<body class="playlist-page">
+  <header class="topbar">
+    <div class="topbar-left">
+      <span class="topbar-logo">🪔 Diwali</span>
+      <span class="tier-badge">🎵 DJ Playlist</span>
+    </div>
+    <a href="index.html" class="btn-startover" title="Back to the Diwali site">← Back to site</a>
+  </header>
+
+  <main id="playlist-root" class="playlist-main">
+    <!-- rendered by the script below -->
+  </main>
+
+  <footer class="footer">
+    <p class="footer-note">🪔 Add your song and let's light up the dance floor! Happy Diwali ✨</p>
+  </footer>
+
+  <!-- Reuse the shared config (DJ_PLAYLIST lives in content.js) -->
+  <script src="content.js"></script>
+  <script>
+    (function () {
+      "use strict";
+      var cfg = (typeof DJ_PLAYLIST !== "undefined") ? DJ_PLAYLIST : null;
+      var root = document.getElementById("playlist-root");
+
+      function el(tag, className, html) {
+        var n = document.createElement(tag);
+        if (className) n.className = className;
+        if (html != null) n.innerHTML = html;
+        return n;
+      }
+
+      // Heading + intro
+      root.appendChild(el("h1", "section-title", "🎵 DJ Playlist Requests"));
+      root.appendChild(el("p", "section-sub", "Add your favourite song to our Diwali party playlist!"));
+
+      if (!cfg || !cfg.enabled) {
+        root.appendChild(el("p", "dj-note", "The song request form is not available right now — check back soon! 🎶"));
+        return;
+      }
+
+      // ---- Tabs ----
+      var tabs = el("div", "dj-tabs");
+      tabs.setAttribute("role", "tablist");
+      var tabForm = el("button", "dj-tab active", "🎤 Request a song");
+      var tabList = el("button", "dj-tab", "📜 Songs added so far");
+      [tabForm, tabList].forEach(function (t) {
+        t.setAttribute("role", "tab");
+        t.type = "button";
+      });
+      tabForm.setAttribute("aria-selected", "true");
+      tabList.setAttribute("aria-selected", "false");
+      tabs.appendChild(tabForm);
+      tabs.appendChild(tabList);
+      root.appendChild(tabs);
+
+      // ---- Panel: Request form ----
+      var panelForm = el("div", "dj-panel active");
+      panelForm.setAttribute("role", "tabpanel");
+      if (cfg.formEmbedUrl) {
+        var f = el("iframe", "dj-iframe dj-form");
+        f.src = cfg.formEmbedUrl;
+        f.setAttribute("title", "Song request form");
+        f.setAttribute("loading", "lazy");
+        f.setAttribute("frameborder", "0");
+        panelForm.appendChild(f);
+      } else {
+        panelForm.appendChild(el("p", "dj-note", "Song request form coming soon. 🎶"));
+      }
+      root.appendChild(panelForm);
+
+      // ---- Panel: Songs added so far ----
+      var panelList = el("div", "dj-panel");
+      panelList.setAttribute("role", "tabpanel");
+      panelList.hidden = true;
+      panelList.appendChild(el("p", "dj-note", "🔄 The list refreshes about every 5 minutes, so a song you just added may take a few minutes to appear here."));
+      if (cfg.sheetEmbedUrl) {
+        var s = el("iframe", "dj-iframe dj-sheet");
+        s.src = cfg.sheetEmbedUrl;
+        s.setAttribute("title", "Current playlist");
+        s.setAttribute("loading", "lazy");
+        s.setAttribute("frameborder", "0");
+        panelList.appendChild(s);
+      } else {
+        panelList.appendChild(el("p", "dj-note", "The song list will appear here once it's published. 🎶"));
+      }
+      root.appendChild(panelList);
+
+      // ---- Tab switching ----
+      function select(which) {
+        var showForm = which === "form";
+        tabForm.classList.toggle("active", showForm);
+        tabList.classList.toggle("active", !showForm);
+        tabForm.setAttribute("aria-selected", showForm ? "true" : "false");
+        tabList.setAttribute("aria-selected", showForm ? "false" : "true");
+        panelForm.hidden = !showForm;
+        panelList.hidden = showForm;
+        panelForm.classList.toggle("active", showForm);
+        panelList.classList.toggle("active", !showForm);
+      }
+      tabForm.addEventListener("click", function () { select("form"); });
+      tabList.addEventListener("click", function () { select("list"); });
+
+      // ---- Drive folder link (always visible, below tabs) ----
+      if (cfg.driveFolderUrl) {
+        var link = el("a", "btn-go dj-folder-link");
+        link.href = cfg.driveFolderUrl;
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
+        link.textContent = "Open the playlist folder ↗";
+        var p = el("p", "dj-folder-wrap");
+        p.appendChild(link);
+        root.appendChild(p);
+      }
+    })();
+  </script>
+</body>
+</html>
