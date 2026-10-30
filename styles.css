@@ -560,12 +560,6 @@ html, body {
 .footer-credits { color: var(--text-dim); margin-top: 10px; font-size: 0.78rem; opacity: 0.7; max-width: 640px; margin-left: auto; margin-right: auto; }
 .visitor-counter { color: var(--gold-soft); margin-top: 14px; font-size: 0.95rem; }
 .visitor-counter #visitor-count { font-weight: 700; color: var(--gold); }
-.footer-hostlink { margin-top: 10px; font-size: 0.8rem; opacity: 0.55; }
-.footer-hostlink a { color: var(--text-dim); text-decoration: none; }
-.footer-hostlink a:hover { color: var(--gold-soft); text-decoration: underline; }
-.agegate-hostlink { margin-top: 18px; font-size: 0.85rem; opacity: 0.6; }
-.agegate-hostlink a { color: var(--text-dim); text-decoration: none; }
-.agegate-hostlink a:hover { color: var(--gold-soft); text-decoration: underline; }
 .footer-credits a { color: var(--gold-soft); }
 
 /* ---------------- MODAL / DIYA POPUP ---------------- */
